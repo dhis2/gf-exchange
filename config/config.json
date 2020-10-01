@@ -1,11 +1,11 @@
 {
   "source": {
-    "url": "https://hmis.ug",
-    "username": "gf-admin",
-    "password": "xxx"
+    "url": "https://play.dhis2.org/2.34.1",
+    "username": "admin",
+    "password": "district"
   },
   "target": {
-    "url": "https://gfdev.baosystems.com",
+    "url": "https://devgf.baosystems.com",
     "username": "ug-admin",
     "password": "xxx"
   },

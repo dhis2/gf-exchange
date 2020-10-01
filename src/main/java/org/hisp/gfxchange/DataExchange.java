@@ -7,6 +7,7 @@ import org.hisp.dhis.Dhis2;
 import org.hisp.dhis.Dhis2Config;
 import org.hisp.dhis.query.analytics.AnalyticsQuery;
 import org.hisp.dhis.query.analytics.Dimension;
+import org.hisp.dhis.response.HttpStatus;
 import org.hisp.dhis.response.datavalueset.DataValueSetResponseMessage;
 import org.hisp.gfxchange.config.ApiSource;
 import org.hisp.gfxchange.config.Config;
@@ -38,6 +39,8 @@ public class DataExchange
         Request request = config.getRequest();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
 
+        checkStatus( dhis2 );
+
         log.info( "Starting pull from: '{}' with user: '{}'", api.getUrl(), api.getUsername() );
 
         AnalyticsQuery query = AnalyticsQuery.instance()
@@ -60,11 +63,24 @@ public class DataExchange
         ApiSource api = config.getTarget();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
 
+        checkStatus( dhis2 );
+
         log.info( "Starting push to: '{}' with user: '{}'", api.getUrl(), api.getUsername() );
 
         DataValueSetResponseMessage response = dhis2.saveDataValueSet( file );
 
         log.info( "Data value set saved with status: '{}'" + response.getStatus() );
         log.info( response.toString() );
+    }
+
+    private void checkStatus( Dhis2 dhis2 )
+        throws IOException
+    {
+        HttpStatus status = dhis2.getStatus();
+
+        if ( status != HttpStatus.OK )
+        {
+            throw new IOException( String.format( "DHIS 2 instance '%s' not available with status: '%s'", dhis2.getDhis2Url(), status ) );
+        }
     }
 }
