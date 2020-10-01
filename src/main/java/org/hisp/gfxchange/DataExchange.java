@@ -21,9 +21,11 @@ public class DataExchange
     public void run()
         throws IOException
     {
-        File tmpFile = File.createTempFile( "gf-xchange", ".json" );
+        File file = File.createTempFile( "gf-xchange", ".json" );
 
-        pull( tmpFile );
+        pull( file );
+
+        push( file );
 
         log.info( "Data exchange completed" );
     }
