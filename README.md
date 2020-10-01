@@ -1,4 +1,4 @@
-# GF Data Exchange tool
+# GF Data Exchange Tool
 
 ## Build
 
