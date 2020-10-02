@@ -44,13 +44,6 @@ public class DataExchange
         log.info( "Data exchange completed: '{}'", watch.formatTime() );
     }
 
-    private void logPrettyJson( Object object )
-        throws IOException
-    {
-        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString( object );
-        log.info( json );
-    }
-
     public void pull( Exchange exchange, File file )
         throws IOException
     {
@@ -104,5 +97,12 @@ public class DataExchange
         {
             log.info( "DHIS 2 instance is available: '{}'", dhis2.getDhis2Url() );
         }
+    }
+
+    private void logPrettyJson( Object object )
+        throws IOException
+    {
+        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString( object );
+        log.info( json );
     }
 }
