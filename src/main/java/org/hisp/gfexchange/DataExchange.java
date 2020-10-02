@@ -3,6 +3,7 @@ package org.hisp.gfexchange;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.hisp.dhis.Dhis2;
 import org.hisp.dhis.Dhis2Config;
 import org.hisp.dhis.query.analytics.AnalyticsQuery;
@@ -14,23 +15,40 @@ import org.hisp.gfexchange.config.ConfigManager;
 import org.hisp.gfexchange.config.Exchange;
 import org.hisp.gfexchange.config.Request;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DataExchange
 {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     public void run( String path )
         throws IOException
     {
+        StopWatch watch = StopWatch.createStarted();
+
+        log.info( "Starting data exchange" );
+
         Exchange exchange = ConfigManager.getExchange( path );
 
-        File file = File.createTempFile( "gfxchange", ".json" );
+        File file = File.createTempFile( "gfexchange_", ".json" );
 
         pull( exchange, file );
 
         push( exchange, file );
 
-        log.info( "Data exchange completed" );
+        watch.stop();
+
+        log.info( "Data exchange completed: '{}'", watch.formatTime() );
+    }
+
+    private void logPrettyJson( Object object )
+        throws IOException
+    {
+        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString( object );
+        log.info( json );
     }
 
     public void pull( Exchange exchange, File file )
@@ -49,12 +67,12 @@ public class DataExchange
             .addDimension( new Dimension( Dimension.DIMENSION_PE, request.getPe() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_OU, request.getOu() ) );
 
-        log.info( "Source query has {} data items, {} periods and {} org units",
+        log.info( "Source query has {} data item(s), {} period(s) and {} org unit(s)",
             request.getDx().size(), request.getPe().size(), request.getOu().size() );
 
         dhis2.writeAnalyticsDataValueSet( query, file );
 
-        log.info( "Wrote pull response to file: '{}'" + file.getAbsolutePath() );
+        log.info( "Wrote pull response to file: '{}'", file.getAbsolutePath() );
     }
 
     public void push( Exchange exchange, File file )
@@ -69,8 +87,8 @@ public class DataExchange
 
         DataValueSetResponseMessage response = dhis2.saveDataValueSet( file );
 
-        log.info( "Data value set saved with status: '{}'" + response.getStatus() );
-        log.info( response.toString() );
+        log.info( "Data value set saved with status: '{}'", response.getStatus() );
+        logPrettyJson( response );
     }
 
     private void checkStatus( Dhis2 dhis2 )
@@ -80,7 +98,11 @@ public class DataExchange
 
         if ( status != HttpStatus.OK )
         {
-            throw new IOException( String.format( "DHIS 2 instance '%s' not available with status: '%s'", dhis2.getDhis2Url(), status ) );
+            throw new IOException( String.format( "DHIS 2 instance '%s' not available for user '%s' with status: '%s'", dhis2.getDhis2Url(), dhis2.getDhis2Username(), status ) );
+        }
+        else
+        {
+            log.info( "DHIS 2 instance is available: '{}'", dhis2.getDhis2Url() );
         }
     }
 }
