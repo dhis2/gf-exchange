@@ -29,7 +29,7 @@ java -jar gfexchange.jar /path/to/exchange.json
 2) The exchange config can be passed as a system property:
 
 ```
-java -jar gfexchange.jar -Dexchange = /path/to/exchange.json
+java -jar gfexchange.jar -Dexchange=/path/to/exchange.json
 ```
 
 3) The default config file location is:
