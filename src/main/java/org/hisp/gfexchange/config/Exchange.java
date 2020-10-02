@@ -1,4 +1,4 @@
-package org.hisp.gfxchange.config;
+package org.hisp.gfexchange.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,14 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ApiSource
+public class Exchange
 {
     @JsonProperty
-    private String url;
+    private ApiSource source;
 
     @JsonProperty
-    private String username;
+    private ApiSource target;
 
     @JsonProperty
-    private String password;
+    private Request request;
 }

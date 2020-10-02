@@ -1,4 +1,4 @@
-package org.hisp.gfxchange;
+package org.hisp.gfexchange;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,34 +9,35 @@ import org.hisp.dhis.query.analytics.AnalyticsQuery;
 import org.hisp.dhis.query.analytics.Dimension;
 import org.hisp.dhis.response.HttpStatus;
 import org.hisp.dhis.response.datavalueset.DataValueSetResponseMessage;
-import org.hisp.gfxchange.config.ApiSource;
-import org.hisp.gfxchange.config.Config;
-import org.hisp.gfxchange.config.ConfigManager;
-import org.hisp.gfxchange.config.Request;
+import org.hisp.gfexchange.config.ApiSource;
+import org.hisp.gfexchange.config.ConfigManager;
+import org.hisp.gfexchange.config.Exchange;
+import org.hisp.gfexchange.config.Request;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DataExchange
 {
-    public void run()
+    public void run( String path )
         throws IOException
     {
-        File file = File.createTempFile( "gf-xchange", ".json" );
+        Exchange exchange = ConfigManager.getExchange( path );
 
-        pull( file );
+        File file = File.createTempFile( "gfxchange", ".json" );
 
-        push( file );
+        pull( exchange, file );
+
+        push( exchange, file );
 
         log.info( "Data exchange completed" );
     }
 
-    public void pull( File file )
+    public void pull( Exchange exchange, File file )
         throws IOException
     {
-        Config config = ConfigManager.getConfig();
-        ApiSource api = config.getSource();
-        Request request = config.getRequest();
+        ApiSource api = exchange.getSource();
+        Request request = exchange.getRequest();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
 
         checkStatus( dhis2 );
@@ -56,11 +57,10 @@ public class DataExchange
         log.info( "Wrote pull response to file: '{}'" + file.getAbsolutePath() );
     }
 
-    public void push( File file )
+    public void push( Exchange exchange, File file )
         throws IOException
     {
-        Config config = ConfigManager.getConfig();
-        ApiSource api = config.getTarget();
+        ApiSource api = exchange.getTarget();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
 
         checkStatus( dhis2 );

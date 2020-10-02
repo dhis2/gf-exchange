@@ -1,4 +1,4 @@
-package org.hisp.gfxchange.config;
+package org.hisp.gfexchange.config;
 
 import java.util.ArrayList;
 import java.util.List;

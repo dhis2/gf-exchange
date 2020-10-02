@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>org.hisp</groupId>
-  <artifactId>gf-xchange</artifactId>
+  <artifactId>gf-exchange</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
   
   <name>DHIS 2 GF data exchange tool</name>
-  <description>DHIS 2 GF data exchange too.</description>
+  <description>DHIS 2 GF data exchange tool</description>
   <url>https://github.com/dhis2/gf-xchange</url>
   
   <organization>
@@ -36,7 +36,7 @@
   
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/dhis2/gf-xchange</url>
+    <url>https://github.com/dhis2/gf-exchange</url>
   </issueManagement>
 
   <dependencies>
@@ -135,7 +135,7 @@
                   <archive>
                     <manifest>
                       <mainClass>
-                        org.hisp.gfxchange.GfXchangeApp
+                        org.hisp.gfexchange.GfExchangeApp
                       </mainClass>
                     </manifest>
                   </archive>
