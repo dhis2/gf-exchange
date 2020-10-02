@@ -91,7 +91,8 @@ public class DataExchange
 
         if ( status != HttpStatus.OK )
         {
-            throw new IOException( String.format( "DHIS 2 instance '%s' not available for user '%s' with status: '%s'", dhis2.getDhis2Url(), dhis2.getDhis2Username(), status ) );
+            throw new IOException( String.format( "DHIS 2 instance '%s' not available for user '%s' with status: '%s'",
+                dhis2.getDhis2Url(), dhis2.getDhis2Username(), status ) );
         }
         else
         {
