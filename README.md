@@ -23,13 +23,13 @@ There are three ways of providing the exchange config to the tool, described in 
 1) The exchange config can be passed as a command line argument:
 
 ```
-java -jar gfexchange.jar /path/to/exchange.json
+java -jar gf-exchange.jar /path/to/exchange.json
 ```
 
 2) The exchange config can be passed as a system property:
 
 ```
-java -Dexchange=/path/to/exchange.json -jar gfexchange.jar 
+java -Dexchange=/path/to/exchange.json -jar gf-exchange.jar 
 ```
 
 3) The default config file location is:
@@ -41,5 +41,5 @@ java -Dexchange=/path/to/exchange.json -jar gfexchange.jar
 ## Run
 
 ```
-java -jar gfexchange.jar
+java -jar gf-exchange.jar
 ```
