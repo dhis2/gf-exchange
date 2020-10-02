@@ -14,23 +14,25 @@ mvn clean package
 
 ## Configure
 
-A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running this tool.
+A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running the tool.
 
-There are three ways of providing the exchange config to the tool. 
+A sample config file is found (here)[config/exchange.json].
 
-The exchange config can be passed as a system property:
+There are three ways of providing the exchange config to the tool, described in the order of precedence:
 
-```
-java -jar gfexchange.jar -Dexchange = /path/to/exchange.json
-```
-
-The exchange config can be passed as a command line argument directly:
+1) The exchange config can be passed as a command line argument:
 
 ```
 java -jar gfexchange.jar /path/to/exchange.json
 ```
 
-The default location which will be searched is:
+2) The exchange config can be passed as a system property:
+
+```
+java -jar gfexchange.jar -Dexchange = /path/to/exchange.json
+```
+
+3) The default config file location is:
 
 ```
 /opt/gfexchange/exchange.json
