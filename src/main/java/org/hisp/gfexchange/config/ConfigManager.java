@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.UncheckedIOException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,13 +21,7 @@ public class ConfigManager
 
     public static Exchange getExchange( String path )
     {
-        String systemPropPath = System.getProperty( "exchange" );
-
-        path = ObjectUtils.firstNonNull( path, systemPropPath, DEFAULT_CONFIG_PATH );
-
-        log.info( "Loading exchange from path: '{}'", path );
-
-        try ( InputStream src = FileUtils.openInputStream( new File( path ) ) )
+        try ( InputStream src = FileUtils.openInputStream( new File( detectAndLogPath( path ) ) ) )
         {
             return objectMapper.readValue( src, Exchange.class );
         }
@@ -36,5 +30,30 @@ public class ConfigManager
             log.error( "Could not load exchange from path: '" + path + "'", ex );
             throw new UncheckedIOException( ex );
         }
+    }
+
+    private static String detectAndLogPath( String path )
+    {
+        String resolvedPath = null;
+
+        String systemPropPath = System.getProperty( "exchange" );
+
+        if ( StringUtils.isNotEmpty( path ) )
+        {
+            log.info( "Loading exchange config from command line argument: '{}'", path );
+            resolvedPath = path;
+        }
+        else if ( StringUtils.isNotEmpty( systemPropPath ) )
+        {
+            log.info( "Loading exchange config from system property: '{}'", systemPropPath );
+            resolvedPath = systemPropPath;
+        }
+        else
+        {
+            log.info( "Loading exchange config from default location: '{}'", DEFAULT_CONFIG_PATH );
+            resolvedPath = DEFAULT_CONFIG_PATH;
+        }
+
+        return resolvedPath;
     }
 }
