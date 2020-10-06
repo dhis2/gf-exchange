@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "name": "Play to GF",
+    "description": "HIV/TB/Malaria data",
+    "version": "1.0"
+  },
   "source": {
     "url": "https://play.dhis2.org/2.34.1",
     "username": "admin",

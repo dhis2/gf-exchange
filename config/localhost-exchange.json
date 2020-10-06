@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "name": "Localhost to localhost",
+    "version": "1.0"
+  },
+  "source": {
+    "url": "http://localhost/dhis",
+    "username": "admin",
+    "password": "district"
+  },
+  "target": {
+    "url": "http://localhost/dhis",
+    "username": "admin",
+    "password": "district"
+  },
+  "request": {
+    "dx": [
+      "IN_52486",
+      "IN_52491"
+    ],
+    "pe": [
+      "202009"
+    ],
+    "ou": [
+      "LEVEL-1"
+    ]
+  }
+}

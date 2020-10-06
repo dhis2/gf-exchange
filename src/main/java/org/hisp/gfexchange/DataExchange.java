@@ -3,6 +3,7 @@ package org.hisp.gfexchange;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.hisp.dhis.Dhis2;
 import org.hisp.dhis.Dhis2Config;
@@ -15,6 +16,7 @@ import org.hisp.dhis.response.datavalueset.DataValueSetResponseMessage;
 import org.hisp.gfexchange.config.ApiSource;
 import org.hisp.gfexchange.config.ConfigManager;
 import org.hisp.gfexchange.config.Exchange;
+import org.hisp.gfexchange.config.Metadata;
 import org.hisp.gfexchange.config.Request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,6 +38,8 @@ public class DataExchange
         Exchange exchange = ConfigManager.getExchange( path );
 
         File file = File.createTempFile( "gfexchange_", ".json" );
+
+        log( exchange );
 
         pull( exchange, file );
 
@@ -61,6 +65,7 @@ public class DataExchange
             .addDimension( new Dimension( Dimension.DIMENSION_DX, request.getDx() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_PE, request.getPe() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_OU, request.getOu() ) )
+            .withInputIdScheme( IdScheme.CODE )
             .withOutputIdScheme( IdScheme.CODE );
 
         log.info( "Source query has {} data item(s), {} period(s) and {} org unit(s)",
@@ -106,10 +111,20 @@ public class DataExchange
         }
     }
 
+    private void log( Exchange exchange )
+    {
+        Metadata meta = exchange.getMetadata();
+
+        if ( meta != null )
+        {
+            log.info( "Name: {}", StringUtils.firstNonBlank( meta.getName(), "<None>" ) );
+            log.info( "Version: {}", StringUtils.firstNonBlank( meta.getVersion(), "<None>" ) );
+        }
+    }
+
     private void logPrettyJson( Object object )
         throws IOException
     {
-        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString( object );
-        log.info( json );
+        log.info( objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString( object ) );
     }
 }

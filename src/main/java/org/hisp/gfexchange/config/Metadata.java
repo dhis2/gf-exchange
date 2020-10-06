@@ -9,17 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Exchange
+public class Metadata
 {
     @JsonProperty
-    private Metadata metadata;
-    
-    @JsonProperty
-    private ApiSource source;
+    private String name;
 
     @JsonProperty
-    private ApiSource target;
+    private String description;
 
     @JsonProperty
-    private Request request;
+    private String version;
 }
