@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.apache.commons.lang3.time.StopWatch;
 import org.hisp.dhis.Dhis2;
 import org.hisp.dhis.Dhis2Config;
+import org.hisp.dhis.model.IdScheme;
+import org.hisp.dhis.model.datavalueset.DataValueSetImportOptions;
 import org.hisp.dhis.query.analytics.AnalyticsQuery;
 import org.hisp.dhis.query.analytics.Dimension;
 import org.hisp.dhis.response.HttpStatus;
@@ -58,7 +60,8 @@ public class DataExchange
         AnalyticsQuery query = AnalyticsQuery.instance()
             .addDimension( new Dimension( Dimension.DIMENSION_DX, request.getDx() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_PE, request.getPe() ) )
-            .addDimension( new Dimension( Dimension.DIMENSION_OU, request.getOu() ) );
+            .addDimension( new Dimension( Dimension.DIMENSION_OU, request.getOu() ) )
+            .withOutputIdScheme( IdScheme.CODE );
 
         log.info( "Source query has {} data item(s), {} period(s) and {} org unit(s)",
             request.getDx().size(), request.getPe().size(), request.getOu().size() );
@@ -78,7 +81,10 @@ public class DataExchange
 
         log.info( "Starting push to: '{}' with user: '{}'", api.getUrl(), api.getUsername() );
 
-        DataValueSetResponseMessage response = dhis2.saveDataValueSet( file );
+        DataValueSetImportOptions options = DataValueSetImportOptions.instance()
+            .withIdScheme( IdScheme.CODE );
+
+        DataValueSetResponseMessage response = dhis2.saveDataValueSet( file, options );
 
         log.info( "Data value set saved with status: '{}'", response.getStatus() );
         logPrettyJson( response );
