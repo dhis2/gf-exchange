@@ -38,6 +38,59 @@ java -Dexchange=/path/to/exchange.json -jar gf-exchange.jar
 /opt/gfexchange/exchange.json
 ```
 
+The exchange configuration file must be in valid JSON format, and supports the following properties.
+
+The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID.
+
+For the DHIS 2 base URL values, the protocol like `https://` should be include, and the `/api` part should _not_ be included.
+
+The `metadata` and ID scheme elements are optional.
+
+```json
+{
+  "metadata": {
+    "name": "{name}",
+    "version": "{version}"
+  },
+  "source": {
+    "api": {
+      "url": "{base URL to DHIS 2 instance}",
+      "username": "{username}",
+      "password": "{password}"
+    },
+    "request": {
+      "dx": [
+        "{indicator ID}",
+        "{data element ID}"
+      ],
+      "pe": [
+        "{fixed period}",
+        "{relative period keyword}"
+      ],
+      "ou": [
+        "{org unit ID}",
+        "{org unit level keyword}"
+      ],
+      "outputIdScheme": "{ID scheme}",
+      "inputIdScheme": "{ID scheme}"
+    }
+  },
+  "target": {
+    "api": {
+      "url": "{base URL to DHIS 2 instance}",
+      "username": "{username}",
+      "password": "{password}"
+    },
+    "request": {
+      "idScheme": "{id scheme}",
+      "dataElementIdScheme": "{id scheme}",
+      "orgUnitIdScheme": "{id scheme}",
+      "categoryOptionIdScheme": "{id scheme}"
+    }
+  }  
+}
+```
+
 ## Run
 
 ```
