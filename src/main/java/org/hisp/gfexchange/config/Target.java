@@ -5,20 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class Metadata
+public class Target
 {
     @JsonProperty
-    private String name;
+    private Api api;
 
     @JsonProperty
-    private String description;
-
-    @JsonProperty
-    private String version;
+    private TargetRequest request;
 }

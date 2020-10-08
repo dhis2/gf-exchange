@@ -1,5 +1,7 @@
 package org.hisp.gfexchange.config;
 
+import org.hisp.dhis.model.IdScheme;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -11,14 +13,17 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Metadata
+public class TargetRequest
 {
     @JsonProperty
-    private String name;
+    private IdScheme dataElementIdScheme;
 
     @JsonProperty
-    private String description;
+    private IdScheme orgUnitIdScheme;
 
     @JsonProperty
-    private String version;
+    private IdScheme categoryOptionComboIdScheme;
+
+    @JsonProperty
+    private IdScheme idScheme;
 }

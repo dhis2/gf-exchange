@@ -4,25 +4,35 @@
     "version": "1.0"
   },
   "source": {
-    "url": "http://localhost/dhis",
-    "username": "admin",
-    "password": "district"
+    "api": {
+      "url": "http://localhost/dhis",
+      "username": "admin",
+      "password": "district"
+    },
+    "request": {
+      "dx": [
+        "IN_52486",
+        "IN_52491"
+      ],
+      "pe": [
+        "202009"
+      ],
+      "ou": [
+        "LEVEL-1"
+      ],
+      "outputIdScheme": "CODE",
+      "inputIdScheme": "CODE"
+    }
   },
   "target": {
-    "url": "http://localhost/dhis",
-    "username": "admin",
-    "password": "district"
-  },
-  "request": {
-    "dx": [
-      "IN_52486",
-      "IN_52491"
-    ],
-    "pe": [
-      "202009"
-    ],
-    "ou": [
-      "LEVEL-1"
-    ]
-  }
+    "api": {
+      "url": "http://localhost/dhis",
+      "username": "gf-sync-tgo",
+      "password": "JYHF62_2fG"
+    },
+    "request": {
+      "orgUnitIdScheme": "CODE",
+      "idScheme": "CODE"
+    }
+  }  
 }

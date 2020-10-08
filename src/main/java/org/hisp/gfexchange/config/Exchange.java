@@ -13,13 +13,10 @@ public class Exchange
 {
     @JsonProperty
     private Metadata metadata;
-    
-    @JsonProperty
-    private ApiSource source;
 
     @JsonProperty
-    private ApiSource target;
+    private Source source;
 
     @JsonProperty
-    private Request request;
+    private Target target;
 }

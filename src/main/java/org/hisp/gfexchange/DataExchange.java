@@ -1,5 +1,7 @@
 package org.hisp.gfexchange;
 
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -13,11 +15,14 @@ import org.hisp.dhis.query.analytics.AnalyticsQuery;
 import org.hisp.dhis.query.analytics.Dimension;
 import org.hisp.dhis.response.HttpStatus;
 import org.hisp.dhis.response.datavalueset.DataValueSetResponseMessage;
-import org.hisp.gfexchange.config.ApiSource;
+import org.hisp.gfexchange.config.Api;
 import org.hisp.gfexchange.config.ConfigManager;
 import org.hisp.gfexchange.config.Exchange;
 import org.hisp.gfexchange.config.Metadata;
-import org.hisp.gfexchange.config.Request;
+import org.hisp.gfexchange.config.Source;
+import org.hisp.gfexchange.config.SourceRequest;
+import org.hisp.gfexchange.config.Target;
+import org.hisp.gfexchange.config.TargetRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -53,8 +58,9 @@ public class DataExchange
     public void pull( Exchange exchange, File file )
         throws IOException
     {
-        ApiSource api = exchange.getSource();
-        Request request = exchange.getRequest();
+        Source source = exchange.getSource();
+        Api api = source.getApi();
+        SourceRequest request = source.getRequest();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
 
         checkStatus( dhis2 );
@@ -65,8 +71,8 @@ public class DataExchange
             .addDimension( new Dimension( Dimension.DIMENSION_DX, request.getDx() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_PE, request.getPe() ) )
             .addDimension( new Dimension( Dimension.DIMENSION_OU, request.getOu() ) )
-            .withInputIdScheme( IdScheme.CODE )
-            .withOutputIdScheme( IdScheme.CODE );
+            .withInputIdScheme( firstNonNull( request.getInputIdScheme(), IdScheme.CODE ) )
+            .withOutputIdScheme( firstNonNull( request.getOutputIdScheme(), IdScheme.CODE ) );
 
         log.info( "Source query has {} data item(s), {} period(s) and {} org unit(s)",
             request.getDx().size(), request.getPe().size(), request.getOu().size() );
@@ -79,15 +85,22 @@ public class DataExchange
     public void push( Exchange exchange, File file )
         throws IOException
     {
-        ApiSource api = exchange.getTarget();
+        Target target = exchange.getTarget();
+        Api api = target.getApi();
+        TargetRequest request = target.getRequest();
         Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
+
+        log.info( "Target request: '{}'", request );
 
         checkStatus( dhis2 );
 
         log.info( "Starting push to: '{}' with user: '{}'", api.getUrl(), api.getUsername() );
 
         DataValueSetImportOptions options = DataValueSetImportOptions.instance()
-            .withIdScheme( IdScheme.CODE );
+            .withIdScheme( firstNonNull( request.getIdScheme(), IdScheme.CODE ) )
+            .withDataElementIdScheme( request.getDataElementIdScheme() )
+            .withOrgUnitIdScheme( request.getOrgUnitIdScheme() )
+            .withCategoryOptionComboIdScheme( request.getCategoryOptionComboIdScheme() );
 
         DataValueSetResponseMessage response = dhis2.saveDataValueSet( file, options );
 

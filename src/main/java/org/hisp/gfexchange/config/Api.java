@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ApiSource
+public class Api
 {
     @JsonProperty
     private String url;
