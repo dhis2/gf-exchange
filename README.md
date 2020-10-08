@@ -16,11 +16,9 @@ mvn clean package
 
 A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running the tool.
 
-A sample config file is found [here](config/localhost-play-exchange.json).
-
 There are three ways of providing the exchange config to the tool, described in the order of precedence:
 
-1) The exchange config can be passed as a command line argument:
+1) The exchange config can be passed as a command line argument (recommended):
 
 ```
 java -jar gf-exchange.jar /path/to/exchange.json
@@ -38,13 +36,17 @@ java -Dexchange=/path/to/exchange.json -jar gf-exchange.jar
 /opt/gfexchange/exchange.json
 ```
 
-The exchange configuration file must be in valid JSON format, and supports the following properties.
+### Config file format
 
-The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID.
+The exchange configuration file must be in valid JSON format. A sample config file is found [here](config/localhost-play-exchange.json).
 
-For the DHIS 2 base URL values, the protocol like `https://` should be include, and the `/api` part should _not_ be included.
+* The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID.
 
-The `metadata` and ID scheme elements are optional.
+* For the DHIS 2 base URL values, the protocol like `https://` should be included, and the `/api` part should be excluded.
+
+* The `metadata` and ID scheme elements are optional.
+
+The following properties are supported.
 
 ```json
 {
