@@ -16,7 +16,7 @@ mvn clean package
 
 A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running the tool.
 
-A sample config file is found [here](config/gf-exchange.json).
+A sample config file is found [here](config/localhost-play-exchange.json).
 
 There are three ways of providing the exchange config to the tool, described in the order of precedence:
 

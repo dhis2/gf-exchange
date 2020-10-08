@@ -26,9 +26,9 @@
   },
   "target": {
     "api": {
-      "url": "http://localhost/dhis",
-      "username": "gf-sync-tgo",
-      "password": "JYHF62_2fG"
+      "url": "https://play.dhis2.org/2.34.1",
+      "username": "admin",
+      "password": "district"
     },
     "request": {
       "orgUnitIdScheme": "CODE",
