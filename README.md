@@ -84,10 +84,10 @@ The following properties are supported.
       "password": "{password}"
     },
     "request": {
-      "idScheme": "{id scheme}",
-      "dataElementIdScheme": "{id scheme}",
-      "orgUnitIdScheme": "{id scheme}",
-      "categoryOptionIdScheme": "{id scheme}"
+      "idScheme": "{ID scheme}",
+      "dataElementIdScheme": "{ID scheme}",
+      "orgUnitIdScheme": "{ID scheme}",
+      "categoryOptionIdScheme": "{ID scheme}"
     }
   }  
 }
