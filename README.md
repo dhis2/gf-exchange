@@ -6,7 +6,7 @@ The GF data exchange is a tool which facilities data exchance between a source a
 
 ## Requirements
 
-This tool requires Java JDK 8.
+This tool requires a Java JDK version 8. OpenJDK is recommended.
 
 ## Download
 
