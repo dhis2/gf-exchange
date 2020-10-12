@@ -8,6 +8,10 @@ The GF data exchange is a tool which facilities data exchance between a source a
 
 This tools requires Java JDK 8.
 
+## Download
+
+Download it from the [release page](https://github.com/dhis2/gf-exchange/releases).
+
 ## Build
 
 To build from source:
