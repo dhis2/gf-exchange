@@ -1,8 +1,6 @@
 # GF Data Exchange Tool
 
-The GF data exchange is a tool which facilities data exchance between a source and a target DHIS 2 instance. 
-
-It retrieves data from the _source_ instance using the raw data value set version of the analytics API endpoint, stores the data temporarily, and pushes data to the target instance using the data value set API endpoint.
+The GF data exchange is a tool which facilities data exchance between a source and a target DHIS 2 instance. It retrieves data from the source instance using the raw data value set version of the analytics API endpoint, stores the data temporarily, and pushes data to the target instance using the data value set API endpoint.
 
 ## Requirements
 
