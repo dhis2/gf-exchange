@@ -31,7 +31,7 @@
       "password": "district"
     },
     "request": {
-      "orgUnitIdScheme": "CODE",
+      "orgUnitIdScheme": "UID",
       "idScheme": "CODE"
     }
   }  
