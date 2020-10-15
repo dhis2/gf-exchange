@@ -38,7 +38,7 @@ java -Dexchange=/path/to/exchange.json -jar gf-exchange.jar
 
 ### Config file format
 
-The exchange configuration file must be in valid JSON format. A sample config file is found [here](config/localhost-play-exchange.json).
+The exchange configuration file must be in valid JSON format. Sample config files can be found [here](config).
 
 * The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID on the format `attribute:{attribute-uid}`.
 
