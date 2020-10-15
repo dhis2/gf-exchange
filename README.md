@@ -24,6 +24,12 @@ There are three ways of providing the exchange config to the tool, described in 
 java -jar gf-exchange.jar /path/to/exchange.json
 ```
 
+Any number of exchange config files can be specified:
+
+```
+java -jar gf-exchange.jar /path/to/exchange1.json /path/to/exchange2.json
+```
+
 2) The exchange config can be passed as a system property:
 
 ```
@@ -105,5 +111,5 @@ The following properties are supported.
 ## Run
 
 ```
-java -jar gf-exchange.jar /path/to/exchange.json
+java -jar gf-exchange.jar /path/to/exchange.json [/path/to/exchange2.json]
 ```
