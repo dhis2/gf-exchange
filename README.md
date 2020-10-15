@@ -12,14 +12,6 @@ This tool requires a Java JDK version 8. OpenJDK is recommended.
 
 Download the tool from the [release page](https://github.com/dhis2/gf-exchange/releases).
 
-## Build
-
-To build from source:
-
-```
-mvn clean package
-```
-
 ## Configure
 
 A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running the tool.
