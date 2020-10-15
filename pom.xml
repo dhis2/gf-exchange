@@ -6,7 +6,7 @@
   
   <groupId>org.hisp</groupId>
   <artifactId>gf-exchange</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <packaging>jar</packaging>
   
   <name>DHIS 2 GF data exchange tool</name>
