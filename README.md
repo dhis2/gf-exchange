@@ -24,8 +24,6 @@ There are three ways of providing the exchange config to the tool, described in 
 java -jar gf-exchange.jar /path/to/exchange.json [/path/to/exchange2.json]
 ```
 
-Any number of exchange config files can be specified:
-
 2) The exchange config can be passed as a system property:
 
 ```
