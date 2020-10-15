@@ -14,7 +14,7 @@ Download the tool from the [release page](https://github.com/dhis2/gf-exchange/r
 
 ## Configure
 
-A data exchange can be configured with a config file called `exchange.json`. It must be readable by the user running the tool.
+A data exchange can be configured with a config file in JSON format. It must be readable by the user running the tool.
 
 There are three ways of providing the exchange config to the tool, described in the order of precedence:
 
