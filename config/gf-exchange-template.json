@@ -61,7 +61,7 @@
       "password": "{password}"
     },
     "request": {
-      "orgUnitIdScheme": "UID",
+      "orgUnitIdScheme": "attribute:ptUIUuniIxo",
       "idScheme": "CODE"
     }
   }  
