@@ -33,6 +33,12 @@ public class DataExchange
 {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    public void run()
+        throws IOException
+    {
+        run( null );
+    }
+
     public void run( String path )
         throws IOException
     {

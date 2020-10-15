@@ -21,18 +21,20 @@ public class ConfigManager
 
     public static Exchange getExchange( String path )
     {
-        try ( InputStream src = FileUtils.openInputStream( new File( detectAndLogPath( path ) ) ) )
+        String resolvedPath = resolveAndLogPath( path );
+
+        try ( InputStream src = FileUtils.openInputStream( new File( resolvedPath ) ) )
         {
             return objectMapper.readValue( src, Exchange.class );
         }
         catch ( IOException ex )
         {
-            log.error( "Could not load exchange from path: '" + path + "'", ex );
+            log.error( "Could not load exchange config from path: '" + path + "'", ex );
             throw new UncheckedIOException( ex );
         }
     }
 
-    private static String detectAndLogPath( String path )
+    private static String resolveAndLogPath( String path )
     {
         String resolvedPath = null;
 

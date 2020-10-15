@@ -1,5 +1,11 @@
 package org.hisp.gfexchange;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * ToDo
  * <p>
@@ -9,15 +15,28 @@ package org.hisp.gfexchange;
  * <li>Log to file</li>
  * </ul>
  */
+@Slf4j
 public class GfExchangeApp
 {
     public static void main( String[] args )
         throws Exception
     {
-        String path = ( args != null && args.length > 0 ) ? args[0] : null;
-
         DataExchange exchange = new DataExchange();
 
-        exchange.run( path );
+        List<String> arguments = new ArrayList<>( Arrays.asList( args ) );
+
+        if ( arguments.isEmpty() )
+        {
+            exchange.run();
+        }
+        else
+        {
+            for ( String path : arguments )
+            {
+                log.info( "Detected config path argument: '{}'", path );
+
+                exchange.run( path );
+            }
+        }
     }
 }
