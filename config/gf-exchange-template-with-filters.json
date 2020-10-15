@@ -24,14 +24,14 @@
         {
           "dimension": "{dimension_id_1}",
           "items": [
-            "{dimension_item_id_1}",
-            "{dimension_item_id_2}"
+            "{item_id_1}",
+            "{item_id_2}"
           ]
         }, {
           "dimension": "{dimension_id_2}",
           "items": [
-            "{dimension_item_id_1}",
-            "{dimension_item_id_2}"
+            "{item_id_1}",
+            "{item_id_2}"
           ]
         }          
       ],

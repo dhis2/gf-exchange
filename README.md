@@ -40,11 +40,11 @@ java -Dexchange=/path/to/exchange.json -jar gf-exchange.jar
 
 The exchange configuration file must be in valid JSON format. A sample config file is found [here](config/localhost-play-exchange.json).
 
-* The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID.
+* The `{ID scheme}` values can be `UID`, `CODE` or a custom scheme UID on the format `attribute:{attribute-uid}`.
 
 * For the DHIS 2 base URL values, the protocol like `https://` should be included, and the `/api` part should be excluded.
 
-* The `metadata`, `filters` and ID scheme elements are optional.
+* The `metadata`, `filters` and various ID scheme elements are optional.
 
 The following properties are supported.
 
