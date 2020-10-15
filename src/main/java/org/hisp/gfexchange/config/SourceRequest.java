@@ -5,17 +5,16 @@ import java.util.List;
 
 import org.hisp.dhis.model.IdScheme;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class SourceRequest
 {
     @JsonProperty
@@ -28,8 +27,17 @@ public class SourceRequest
     private List<String> ou = new ArrayList<>();
 
     @JsonProperty
+    private List<Filter> filters = new ArrayList<>();
+
+    @JsonProperty
     private IdScheme outputIdScheme;
 
     @JsonProperty
     private IdScheme inputIdScheme;
+
+    @JsonIgnore
+    public boolean hasFilters()
+    {
+        return filters != null && !filters.isEmpty();
+    }
 }

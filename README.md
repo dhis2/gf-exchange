@@ -52,7 +52,7 @@ The exchange configuration file must be in valid JSON format. A sample config fi
 
 * For the DHIS 2 base URL values, the protocol like `https://` should be included, and the `/api` part should be excluded.
 
-* The `metadata` and ID scheme elements are optional.
+* The `metadata`, `filters` and ID scheme elements are optional.
 
 The following properties are supported.
 
@@ -80,6 +80,15 @@ The following properties are supported.
       "ou": [
         "{org unit ID}",
         "{org unit level keyword}"
+      ],
+      "filters": [
+        {
+          "dimension": "{dimension ID}",
+          "items": [
+            "{dimension item ID}",
+            "{dimension item ID}"
+          ]
+        }
       ],
       "outputIdScheme": "{ID scheme}",
       "inputIdScheme": "{ID scheme}"

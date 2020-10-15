@@ -12,43 +12,28 @@
     "request": {
       "dx": [
         "GF_CM-1a",
-        "GF_CM-1b",
-        "GF_CM-1c",
-        "GF_KP-1a",
-        "GF_KP-1b",
-        "GF_KP-1c",
-        "GF_KP-1d",
-        "GF_KP-3a",
-        "GF_KP-3b",
-        "GF_KP-3c",
-        "GF_KP-3d",
-        "GF_MDR_TB-3",
-        "GF_PMTCT-2.1",
-        "GF_RE-ART",
-        "GF_RE-KP",
-        "GF_RE-MAL",
-        "GF_RE-TB",
-        "GF_RR-ART",
-        "GF_RR-KP",
-        "GF_RR-MAL",
-        "GF_RR-TB",
-        "GF_TB/HIV-3.1",
-        "GF_TCP-1",
-        "GF_TCP-7a",
-        "GF_TCP-7b",
-        "GF_TCP-7c",
-        "GF_TCS-1.1",
-        "GF_TCS-New",
-        "GF_VC-3",
-        "GF_VC-5",
-        "GF_YP-2",
-        "GF_YP-3"
+        "GF_CM-1b"
       ],
       "pe": [
         "{period_id_like_202009}"
       ],
       "ou": [
-        "{country_org_unit_id}"
+        "{country_org_unit_uid}"
+      ],
+      "filters": [
+        {
+          "dimension": "{dimension_id_1}",
+          "items": [
+            "{dimension_item_id_1}",
+            "{dimension_item_id_2}"
+          ]
+        }, {
+          "dimension": "{dimension_id_2}",
+          "items": [
+            "{dimension_item_id_1}",
+            "{dimension_item_id_2}"
+          ]
+        }          
       ],
       "outputIdScheme": "CODE",
       "inputIdScheme": "CODE"

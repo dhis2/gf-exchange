@@ -74,8 +74,14 @@ public class DataExchange
             .withInputIdScheme( firstNonNull( request.getInputIdScheme(), IdScheme.CODE ) )
             .withOutputIdScheme( firstNonNull( request.getOutputIdScheme(), IdScheme.CODE ) );
 
-        log.info( "Source query has {} data item(s), {} period(s) and {} org unit(s)",
-            request.getDx().size(), request.getPe().size(), request.getOu().size() );
+        if ( request.hasFilters() )
+        {
+            request.getFilters().forEach( filter ->
+                query.addFilter( new Dimension( filter.getDimension(), filter.getItems() ) ) );
+        }
+
+        log.info( "Source query has {} data item(s), {} period(s), {} org unit(s), {} filter(s)",
+            request.getDx().size(), request.getPe().size(), request.getOu().size(), request.getFilters().size() );
 
         dhis2.writeAnalyticsDataValueSet( query, file );
 

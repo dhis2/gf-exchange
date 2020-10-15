@@ -16,6 +16,8 @@ public class GfExchangeApp
     {
         String path = ( args != null && args.length > 0 ) ? args[0] : null;
 
-        new DataExchange().run( path );
+        DataExchange exchange = new DataExchange();
+
+        exchange.run( path );
     }
 }
