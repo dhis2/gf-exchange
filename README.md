@@ -18,17 +18,13 @@ A data exchange can be configured with a config file called `exchange.json`. It 
 
 There are three ways of providing the exchange config to the tool, described in the order of precedence:
 
-1) The exchange config can be passed as a command line argument (recommended):
+1) The exchange config can be passed as a command line argument (recommended), where any number of exchange config files can be specified:
 
 ```
-java -jar gf-exchange.jar /path/to/exchange.json
+java -jar gf-exchange.jar /path/to/exchange.json [/path/to/exchange2.json]
 ```
 
 Any number of exchange config files can be specified:
-
-```
-java -jar gf-exchange.jar /path/to/exchange1.json /path/to/exchange2.json
-```
 
 2) The exchange config can be passed as a system property:
 
@@ -111,5 +107,5 @@ The following properties are supported.
 ## Run
 
 ```
-java -jar gf-exchange.jar /path/to/exchange.json [/path/to/exchange2.json]
+java -jar gf-exchange.jar /path/to/exchange.json /path/to/exchange2.json
 ```
