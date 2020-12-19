@@ -6,15 +6,6 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * ToDo
- * <p>
- * <ul>
- * <li>Filter support for analytics queries</li>
- * <li>Id scheme support in exchange config file</li>
- * <li>Log to file</li>
- * </ul>
- */
 @Slf4j
 public class GfExchangeApp
 {
