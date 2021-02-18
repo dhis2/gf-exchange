@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.hisp.dhis.Dhis2;
 import org.hisp.dhis.model.Attribute;
 import org.hisp.dhis.model.AttributeValue;
 import org.hisp.dhis.model.CategoryOption;
@@ -18,11 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 public class GfGrantsLoader
     extends AbstractGfLoader
 {
-    public void load( String file )
+    public void load( String file, String config )
     {
         try
         {
-            importData( getOptions( file ) );
+            Dhis2 dhis2 = getDhis2( config );
+
+            importData( getOptions( file ), dhis2 );
         }
         catch ( IOException ex )
         {

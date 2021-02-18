@@ -5,6 +5,6 @@ This repository contains various projects related to the DHIS 2 Global Fund glob
 ## Projects
 
 * [GF data exchange](gf-exchange)
-* [GF grant loader](gf-grant-loader)
-* GF grant mapper (coming)
-* DHIS  2 GF connector (coming)
+* [GF metadata loader](gf-metadata-loader)
+* GF grant mapper (coming soon)
+* DHIS  2 GF connector (coming soon)

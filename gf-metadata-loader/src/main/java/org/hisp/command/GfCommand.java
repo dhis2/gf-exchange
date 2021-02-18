@@ -48,11 +48,11 @@ public class GfCommand
 
         if ( "grant".equals( type ) )
         {
-            new GfGrantsLoader().load( file );
+            new GfGrantsLoader().load( file, config );
         }
         else if ( "ip".equals( type ) )
         {
-            new GfIpLoader().load( file );
+            new GfIpLoader().load( file, config );
         }
 
         return 0;
