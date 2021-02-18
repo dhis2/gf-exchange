@@ -6,25 +6,22 @@ import org.apache.commons.lang3.Validate;
 import org.hisp.loader.GfGrantsLoader;
 import org.hisp.loader.GfIpLoader;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+
 import lombok.extern.slf4j.Slf4j;
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
 
 @Slf4j
-@Command( name = "gf-load", description = "Loads grants and IPs" )
 public class GfCommand
     implements Callable<Integer>
 {
-    private static final String DEFAULT_CONFIG_PATH = "/opt/gfmetadataloader/gf.conf";
-
-    @Option(required = true, names =  {"-t", "--type"}, description = "Object type")
+    @Parameter(required = true, names =  {"-t", "--type"}, description = "Object type")
     private String type;
 
-    @Option(required = true, names =  {"-f", "--file"}, description = "CSV file")
+    @Parameter(required = true, names =  {"-f", "--file"}, description = "CSV file")
     private String file;
 
-    @Option(required = false, names =  {"-c", "--config"}, description = "Config file", defaultValue = DEFAULT_CONFIG_PATH)
+    @Parameter(required = false, names =  {"-c", "--config"}, description = "Config file")
     private String config;
 
     /**
@@ -32,14 +29,18 @@ public class GfCommand
      */
     public static void main( String... args )
     {
-        int exitCode = new CommandLine( new GfCommand() ).execute( args );
-        System.exit( exitCode );
-    }
+        GfCommand command = new GfCommand();
 
+        JCommander.newBuilder()
+            .addObject( command )
+            .build()
+            .parse( args );
+
+        command.call();
+    }
 
     @Override
     public Integer call()
-        throws Exception
     {
         log.info( "Loading type: '{}' with file: '{}'", type, file );
 

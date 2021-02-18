@@ -7,13 +7,19 @@ import java.io.UncheckedIOException;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.ObjectUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ConfigManager
 {
+    private static final String DEFAULT_CONFIG_PATH = "/opt/gfmetadataloader/gf.conf";
+
     public static Properties getConfig( String path )
     {
+        path = ObjectUtils.firstNonNull( path, DEFAULT_CONFIG_PATH );
+
         try ( InputStream in = FileUtils.openInputStream( new File( path ) ) )
         {
             Properties props = new Properties();
