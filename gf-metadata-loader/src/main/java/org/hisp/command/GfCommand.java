@@ -8,6 +8,7 @@ import org.hisp.loader.GfIpLoader;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,12 +32,20 @@ public class GfCommand
     {
         GfCommand command = new GfCommand();
 
-        JCommander.newBuilder()
-            .addObject( command )
-            .build()
-            .parse( args );
+        try
+        {
+            JCommander.newBuilder()
+                .addObject( command )
+                .build()
+                .parse( args );
 
-        command.call();
+            command.call();
+        }
+        catch ( ParameterException ex )
+        {
+            ex.getJCommander().usage();
+            System.exit( 1 );
+        }
     }
 
     @Override
