@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "name": "Togo to GF Monthly",
+    "description": "Togo to GF exchange config with filters",
+    "version": "1.0"
+  },
+  "source": {
+    "api": {
+      "url": "https://togo.dhis2.org/staging",
+      "username": "integration",
+      "password": "L!h3F3$D"
+    },
+    "request": {
+      "dx": [
+        "GF_CM-1a",
+        "GF_CM-1b",
+        "GF_CM-1c"
+      ],
+      "pe": [
+        "202009"
+      ],
+      "ou": [
+        "LEVEL-1"
+      ],
+      "filters": [
+        {
+          "dimension": "STATUT",
+          "items": [
+            "PUBLIC"
+          ]
+        }
+      ],        
+      "outputIdScheme": "CODE",
+      "inputIdScheme": "CODE"
+    }
+  },
+  "target": {
+    "api": {
+      "url": "https://devgf.baosystems.com",
+      "username": "gf-sync-tgo",
+      "password": "UWP82_12jg"
+    },
+    "request": {
+      "orgUnitIdScheme": "attribute:ptUIUuniIxo",
+      "idScheme": "CODE"
+    }
+  }  
+}

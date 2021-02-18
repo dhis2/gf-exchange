@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "name": "TESTING | SISMA Test 2  GF Test",
+    "version": "1.0"
+  },
+  "source": {
+    "api": {
+      "url": "https://www.dhis2.org.mz/teste",
+      "username": "sdintero",
+      "password": "Mpt23mgi#:"
+    },
+    "request": {
+      "dx": [
+        "GF_TCS-1.1",
+        "GF_TB/HIV-3.1",
+        "GF_TCS-New",
+        "GF_TCP-1",
+        "GF_PMTCT-2.1",
+        "GF_KP-3c",
+        "GF_KP-3d",
+        "GF_CM-1a",
+        "GF_CM-1b",
+        "GF_MDR TB-3",
+        "GF_KP-3a",
+        "GF_VC-3"
+      ],
+      "pe": [
+        "202008"
+      ],
+      "ou": [
+        "LEVEL-1"
+      ],
+      "outputIdScheme": "CODE",
+      "inputIdScheme": "CODE"
+    }
+  },
+  "target": {
+    "api": {
+      "url": "https://devgf.baosystems.com",
+      "username": "gf-sync-moz",
+      "password": "H6GBgrw_12Gf"
+    },
+    "request": {
+      "orgUnitIdScheme": "attribute:ptUIUuniIxo",
+      "idScheme": "CODE"
+    }
+  }
+}

@@ -134,9 +134,7 @@
                 <configuration>
                   <archive>
                     <manifest>
-                      <mainClass>
-                        org.hisp.gfexchange.GfExchangeApp
-                      </mainClass>
+                      <mainClass>org.hisp.gfexchange.GfExchangeApp</mainClass>
                     </manifest>
                   </archive>
                   <descriptorRefs>

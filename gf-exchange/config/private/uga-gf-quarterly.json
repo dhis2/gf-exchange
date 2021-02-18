@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "name": "Uganda to GF global",
+    "version": "1.0"
+  },
+  "source": {
+    "api": {
+      "url": "https://hmis-dev.health.go.ug",
+      "username": "hisp.pomiel",
+      "password": "Athieno-2207"
+    },
+    "request": {
+      "dx": [
+		"GF_TCS-1.1",
+		"GF_TCS-New",
+		"GF_RE-ART",
+		"GF_RR-ART",
+		"GF_TCP-1",
+		"GF_MDR_TB-3",
+		"GF_TB/HIV-3.1",
+		"GF_RR-TB",
+		"GF_RE-TB",
+		"GF_CM-1b"
+      ],
+      "pe": [
+        "2020Q1","2020Q2","2020Q3"
+      ],
+      "ou": [
+        "UG256"
+      ],
+      "outputIdScheme": "CODE",
+      "inputIdScheme": "CODE"
+    }
+  },
+  "target": {
+    "api": {
+      "url": "https://devgf.baosystems.com",
+      "username": "gf-sync-uga",
+      "password": "OIYh7-12gq"
+    },
+     "request": {
+      "orgUnitIdScheme": "attribute:ptUIUuniIxo",
+      "idScheme": "CODE"
+    }
+  }  
+}
