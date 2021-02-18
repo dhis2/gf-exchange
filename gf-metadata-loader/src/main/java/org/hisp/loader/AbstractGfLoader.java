@@ -1,5 +1,8 @@
 package org.hisp.loader;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -15,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractGfLoader
 {
+    private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat( "MM/dd/yyyy" );
+
     protected Dhis2 getDhis2( String path )
     {
         Properties config = ConfigManager.getConfig( path );
@@ -48,5 +53,29 @@ public abstract class AbstractGfLoader
         }
 
         log.info( "Imported category options, success: {}, errors: {}", success, error );
+    }
+
+    /**
+     * Returns a date from the <code>MM/dd/yyyy<code> format.
+     *
+     * @param input the date string.
+     * @return a date.
+     */
+    protected Date getDate( String input )
+    {
+        if ( input == null )
+        {
+            return null;
+        }
+
+        try
+        {
+            return DATE_FORMAT.parse( input );
+        }
+        catch ( ParseException ex )
+        {
+            log.warn( "Could not parse date string: '{}'" );
+            return null;
+        }
     }
 }

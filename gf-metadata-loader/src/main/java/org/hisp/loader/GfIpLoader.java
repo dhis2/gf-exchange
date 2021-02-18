@@ -55,6 +55,8 @@ public class GfIpLoader
             co.setCode( record.get( "IPID" ) );
             co.setName( "IP_" + record.get( "IPName" ) );
             co.setShortName( record.get( "IPName" ) );
+            co.setStartDate( getDate( record.get( "StartDate" ) ) );
+            co.setEndDate( getDate( record.get( "EndDate" ) ) );
 
             co.addAttributeValue( new AttributeValue( grantId, record.get( "GrantID" ) ) );
 
