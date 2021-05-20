@@ -100,7 +100,9 @@ public class DataExchange
         Target target = exchange.getTarget();
         Api api = target.getApi();
         TargetRequest request = target.getRequest();
-        Dhis2 dhis2 = new Dhis2( new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() ) );
+
+        Dhis2Config config = new Dhis2Config( api.getUrl(), api.getUsername(), api.getPassword() );
+        Dhis2 dhis2 = new Dhis2( config );
 
         log.info( "Target request: '{}'", request );
 
