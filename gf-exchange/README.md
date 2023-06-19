@@ -105,5 +105,5 @@ The following properties are supported.
 ## Run
 
 ```
-java -jar gf-exchange.jar /path/to/exchange.json /path/to/exchange2.json
+java -jar gf-exchange.jar /path/to/exchange.json [/path/to/exchange2.json]
 ```
